@@ -1,0 +1,56 @@
+<form [formGroup]="articleForm" style="display: flex; justify-content: center" class="form container" >
+    <div style="margin: 5px">
+        <div class="form-group">
+            <label for="title">Heading
+                <input formControlName="title" class="form-control" id="title" placeholder="News Name">
+                <div *ngIf="submitted && articleForm.controls.title.errors" class="error">
+                    <div *ngIf="submitted && articleForm.controls.title.errors.required" class="text-danger">title is required</div>
+                </div>
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="newsDescription">Short Description
+                <input formControlName="description" class="form-control" id="newsDescription" placeholder="News Description">
+            </label>
+        </div>
+      <div class="form-group">
+        <label for="newsAuthor">Author
+          <input formControlName="author" class="form-control" id="newsAuthor" placeholder="News Author">
+        </label>
+      </div>
+        <div class="form-group">
+            <label for="newsContent">Content
+                <textarea formControlName="content" class="form-control" id="newsContent" placeholder="News Description"></textarea>
+                <div *ngIf="submitted && articleForm.controls.content.errors" class="warning">
+                    <div *ngIf="submitted && articleForm.controls.content.errors.required" class="text-danger">content is required</div>
+                </div>
+            </label>
+        </div>
+
+    </div>
+    <div style="margin: 5px">
+        <div class="form-group">
+            <label for="inputImage">Image
+              <label for="URLChoice" (click)="setImgSource(true)"><input type="radio" id="URLChoice" name="contact" [value]="urlSource">URL</label>
+              <label for="fileChoice" (click)="setImgSource(false)"><input type="radio" id="fileChoice" name="contact" [value]="fileSource">File</label>
+              <input formControlName="urlToImage" class="form-control" id="inputImage" placeholder="urlToImage" [value]="urlSource" >
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="inputDate">Date
+              <input formControlName="publishedAt" class="form-control" id="inputDate" type="date" [value]="getCurrentDate() | date:'yyyy-MM-dd'" (input)="today=parseDate($event.target.value)" />
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="inputUrl">Source Url
+                <input formControlName="url" class="form-control" id="inputUrl" placeholder="Url">
+            </label>
+        </div>
+      <div style="display: flex; justify-content: space-between;">
+        <button type="submit" [disabled]="!articleForm.valid" (click)="onSubmitArticle()" class="btn btn-success">Save</button>
+        <button (click)="reRouteToMainPage('news')" class="btn btn-warning">Cancel</button>
+      </div>
+    </div>
+</form>

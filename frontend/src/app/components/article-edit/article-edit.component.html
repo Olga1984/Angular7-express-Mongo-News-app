@@ -1,0 +1,11 @@
+<div class="container ">
+    <ul class="list-group">
+      <li class="list-group-item" style="margin: 5px 0; display: flex; justify-content: space-between;">
+        <app-article [article]="article" [extended]="extended"></app-article>
+            <div class="text-right">
+                <button (click)="reRouteToEditForm(article._id, true)" class="btn btn-info">Edit</button>
+                <button class="btn btn-danger" (click)="deleteArticleAndRerouteToMainPage()">Delete</button>
+            </div>
+        </li>
+    </ul>
+</div>

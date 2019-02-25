@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="wrapper">
+        <div class="form-group" style="width: 300px;">
+            <select class="form-control" *ngIf="!isMynews" (change)="onGetWorldNews($event.target.value)">
+                <option *ngFor="let i of chanels">{{i}}</option>
+            </select>
+        </div>
+        <div class="form-group" style="overflow: hidden;">
+            <input class="form-control" style="width: 300px; float: left;" type="text" #newsInput maxlength="10" placeholder="Enter word and click">
+            <button class="btn btn-info" (click)="searchFilter(newsInput.value)">Filter</button>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="checkbox" id="checkbox" (change)="onFilterChange($event)" /><label for="checkbox">only created by me</label>
+        </div>
+        <div class="form-group">
+            <button class=" form-control btn-dark" (click)="reRouteToCreatePage()">Add article</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <ul class="list-group" *ngFor="let newsArticle of articles | newsfilter: searchWord">
+            <app-article-container [isMynews]="isMynews" [article]="newsArticle"></app-article-container>
+        </ul>
+    </div>
+
+    <div class="container" style="display: flex; align-content: center; justify-content: center;">
+        <button type="submit" class="form-control btn btn-dark" (click)="addArticles()">Load more</button>
+    </div>
+</div>

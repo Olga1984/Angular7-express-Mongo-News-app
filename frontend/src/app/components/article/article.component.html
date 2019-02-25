@@ -1,0 +1,13 @@
+<div style="display: flex;">
+    <img [src]="article.urlToImage" alt="awesome image" style="width:125px; height: 70px; margin-right: 10px;">
+    <div>
+        <h4>{{article.title | titlecase }}</h4>
+        <h6 class="text-center">{{ article.author | uppercase}}</h6>
+        <p>{{article.description | lowercase}}</p>
+        <p *ngIf="extended">{{article.content | lowercase}}</p>
+        <a class="btn-link" [href]="article.url">Read more...</a>
+    </div>
+    <div class="text-right">
+        <div>Date: {{article.publishedAt | date:'dd.mm.yyyy hh:mm:ss'}}</div>
+    </div>
+</div>
