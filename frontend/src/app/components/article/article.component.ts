@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {News} from '../../models/news';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-article',
@@ -10,10 +11,17 @@ export class ArticleComponent implements OnInit {
   @Input() article: News;
   @Input() extended: boolean;
 
-
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+  reRoute(id) {
+    if (!id) {
+      return;
+    } else {
+      const url = `news/${id}`
+      this.router.navigate([url]);
+    }
   }
 
 }

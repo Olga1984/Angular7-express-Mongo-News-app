@@ -2,10 +2,14 @@
     <ul class="list-group">
       <li class="list-group-item" style="margin: 5px 0; display: flex; justify-content: space-between;">
         <app-article [article]="article" [extended]="extended"></app-article>
-            <div class="text-right">
+            <div *ngIf="true" class="text-right">
                 <button (click)="reRouteToEditForm(article._id, true)" class="btn btn-info">Edit</button>
                 <button class="btn btn-danger" (click)="deleteArticleAndRerouteToMainPage()">Delete</button>
             </div>
+        <!--<div *ngIf="isMynews" class="text-right">-->
+          <!--<button class="btn btn-info"  (click)="reRoute(newsArticle._id)">Edit</button>  &lt;!&ndash;(click)="reRoute('news/{{my-articles-view._id}}')"&ndash;&gt;-->
+          <!--<button class="btn btn-danger" (click)="reRoute(newsArticle._id)">Delete</button>-->
+        <!--</div>-->
         </li>
     </ul>
 </div>

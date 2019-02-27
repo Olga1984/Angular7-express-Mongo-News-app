@@ -5,11 +5,11 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { ArticleListComponent } from './components/article-list/article-list.component';
-import { ArticleContainerComponent } from './components/article-container/article-container.component';
-import { ArticleEditComponent } from './components/article-edit/article-edit.component';
+import { ArticleListViewComponent } from './views/article-list-view/article-list-view.component';
+import { MyArticlesViewComponent } from './views/my-articles-view/my-articles-view.component';
+import { ArticleEditViewComponent } from './views/article-edit-view/article-edit-view.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ArticleFormCreateEditComponent } from './components/article-form-create-edit/article-form-create-edit.component';
+import { ArticleFormCreateEditViewComponent } from './views/article-form-create-edit-view/article-form-create-edit-view.component';
 import { NewsfilterPipe } from './pipes/newsfilter.pipe';
 import { ArticleComponent } from './components/article/article.component';
 import { MyNewsApiService } from './services/my-news-api.service';
@@ -18,10 +18,10 @@ import { MyNewsApiService } from './services/my-news-api.service';
   declarations: [
     AppComponent,
     LayoutComponent,
-    ArticleListComponent,
-    ArticleContainerComponent,
-    ArticleEditComponent,
-    ArticleFormCreateEditComponent,
+    ArticleListViewComponent,
+    MyArticlesViewComponent,
+    ArticleEditViewComponent,
+    ArticleFormCreateEditViewComponent,
     NewsfilterPipe,
     ArticleComponent
   ],

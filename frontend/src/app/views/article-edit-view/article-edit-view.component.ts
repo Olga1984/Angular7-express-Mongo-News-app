@@ -1,15 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import { MyNewsApiService } from '../../services/my-news-api.service';
 import {EventEmitterService} from '../../services/event-emitter.service';
 import {News} from '../../models/news';
 
 @Component({
-  selector: 'app-article-edit',
-  templateUrl: './article-edit.component.html',
-  styleUrls: ['./article-edit.component.scss']
+  selector: 'app-article-edit-view',
+  templateUrl: './article-edit-view.component.html',
+  styleUrls: ['./article-edit-view.component.scss']
 })
-export class ArticleEditComponent implements OnInit {
+export class ArticleEditViewComponent implements OnInit {
   extended: boolean = true;
   articleId: any;
   article: News;

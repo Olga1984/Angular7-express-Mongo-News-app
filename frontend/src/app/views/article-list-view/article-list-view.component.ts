@@ -1,4 +1,4 @@
-import {Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import { WorldNewsApiService } from '../../services/world-news-api.service';
 import { News } from '../../models/news';
 import { MyNewsApiService } from '../../services/my-news-api.service';
@@ -6,12 +6,12 @@ import { Router } from '@angular/router';
 import { EventEmitterService } from '../../services/event-emitter.service';
 
 @Component({
-  selector: 'app-article-list',
-  templateUrl: './article-list.component.html',
-  styleUrls: ['./article-list.component.scss']
+  selector: 'app-article-list-view',
+  templateUrl: './article-list-view.component.html',
+  styleUrls: ['./article-list-view.component.scss']
 })
 
-export class ArticleListComponent implements OnInit {
+export class ArticleListViewComponent implements OnInit, OnChanges  {
 
   chanels: string[] = [
     'cnn',
@@ -29,8 +29,6 @@ export class ArticleListComponent implements OnInit {
 
   articlesCount = 4;
 
-  // myArticles: News[] = myArticles.slice(0, this.articlesCount); // and see onGetMyNews
-
   sourceChanel: string;
   searchWord: string;
 
@@ -42,7 +40,16 @@ export class ArticleListComponent implements OnInit {
   ngOnInit() {
     if (!this.isMynews) {
     this.onGetWorldNews(this.chanels[0]);
+    } else {
+      this.onGetMyNews();
+
     }
+    this.myNewsApiService.updatedArticles.subscribe((articles: News[]) => {
+      this.articles = articles.slice(0, this.articlesCount);
+    });
+  }
+
+  ngOnChanges() {
   }
   searchFilter(word: string) {
     this.searchWord = word;
@@ -79,6 +86,7 @@ export class ArticleListComponent implements OnInit {
     this.myNewsApiService.getNews().subscribe(
       (articles: News[]) => {
         this.articles = articles.slice(0, this.articlesCount);
+        this.myNewsApiService.updatedArticles.emit(this.articles);
       },
       (error) => console.log(error)
     );

@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ArticleListComponent } from './components/article-list/article-list.component';
-import { ArticleEditComponent} from './components/article-edit/article-edit.component';
-import { ArticleFormCreateEditComponent } from './components/article-form-create-edit/article-form-create-edit.component';
+import { ArticleListViewComponent } from './views/article-list-view/article-list-view.component';
+import { ArticleEditViewComponent} from './views/article-edit-view/article-edit-view.component';
+import { ArticleFormCreateEditViewComponent } from './views/article-form-create-edit-view/article-form-create-edit-view.component';
 
 const routes: Routes = [
-  {path: 'news', component: ArticleListComponent},
-  {path: 'news/create', component: ArticleFormCreateEditComponent},
-  {path: 'news/:id', component: ArticleEditComponent},
-  {path: 'news/edit/:id', component: ArticleFormCreateEditComponent}
+  {path: 'news', component: ArticleListViewComponent},
+  {path: 'news/create', component: ArticleFormCreateEditViewComponent},
+  {path: 'news/:id', component: ArticleEditViewComponent},
+  {path: 'news/edit/:id', component: ArticleFormCreateEditViewComponent}
 ];
 
 @NgModule({

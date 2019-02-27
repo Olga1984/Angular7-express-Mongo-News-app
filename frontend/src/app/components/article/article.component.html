@@ -1,10 +1,10 @@
-<div style="display: flex;">
+<div *ngIf="article" style="display: flex;">
     <img [src]="article.urlToImage" alt="awesome image" style="width:125px; height: 70px; margin-right: 10px;">
     <div>
-        <h4>{{article.title | titlecase }}</h4>
+        <h4><a (click)="reRoute(article._id)">{{article.title | titlecase }}</a></h4>
         <h6 class="text-center">{{ article.author | uppercase}}</h6>
         <p>{{article.description | lowercase}}</p>
-        <p *ngIf="extended">{{article.content | lowercase}}</p>
+        <p *ngIf="extended">{{article.content}}</p>
         <a class="btn-link" [href]="article.url">Read more...</a>
     </div>
     <div class="text-right">

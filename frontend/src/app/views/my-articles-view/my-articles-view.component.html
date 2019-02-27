@@ -1,0 +1,8 @@
+        <li class="list-group-item" style="margin: 5px 0; display: flex; justify-content: space-between;">
+          <app-article [article]="newsArticle" [extended]="extended"></app-article>
+            <div *ngIf="isMynews" class="text-right">
+               <button class="btn btn-info"  (click)=" reRouteToEditForm(newsArticle._id, true)">Edit</button>
+                <button class="btn btn-danger" (click)="deleteArticle(newsArticle._id)">Delete</button>
+            </div>
+        </li>
+

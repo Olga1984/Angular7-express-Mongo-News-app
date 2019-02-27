@@ -8,18 +8,18 @@ import {News} from '../../models/news';
 declare var M: any;
 
 @Component({
-  selector: 'app-article-create',
-  templateUrl: './article-form-create-edit.component.html',
-  styleUrls: ['./article-form-create-edit.component.scss']
+  selector: 'app-article-create-view',
+  templateUrl: './article-form-create-edit-view.component.html',
+  styleUrls: ['./article-form-create-edit-view.component.scss']
 })
-export class ArticleFormCreateEditComponent implements OnInit {
+export class ArticleFormCreateEditViewComponent implements OnInit {
   today: Date;
   pageName: string;
   articleId: any;
   article: News;
 
   urlSource = 'https://ichef.bbci.co.uk/news/1024/branded_news/7A23/production/_97176213_breaking_news_bigger.png';
-  fileSource = 'file://news_bigger.png';
+  fileSource = 'https://amp.businessinsider.com/images/5c75b4e226289834d959eefd-1920-960.jpg';
 
   fullArticle: string;
   submitted = false;
@@ -47,7 +47,7 @@ export class ArticleFormCreateEditComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private eventEmitterService: EventEmitterService, private myNewsApiService: MyNewsApiService, private router: Router, private route: ActivatedRoute) {}
 
-  getCurrentDate() {
+  setCurrentDate() {
     this.today = new Date();
   }
   parseDate(dateString: string): Date {
@@ -72,8 +72,10 @@ export class ArticleFormCreateEditComponent implements OnInit {
         );
         M.toast({html: 'Saved!'});
       }
+
       this.submitted = true;
       this.success = true;
+      this.reRouteToMainPage()
     }
   }
   setImgSource(isUrl: boolean) {
@@ -84,7 +86,8 @@ export class ArticleFormCreateEditComponent implements OnInit {
     }
   }
 
-  reRouteToMainPage(url: string) {
+  reRouteToMainPage() {
+    const url = 'news';
     this.router.navigate([url]);
   }
 
@@ -94,7 +97,7 @@ export class ArticleFormCreateEditComponent implements OnInit {
       description: this.description,
       content: this.content,
       author: this.author,
-      publishedAt: this.publishedAt,
+      publishedAt: this.today,
       urlToImage: this.urlToImage,
       url: this.url
     });
@@ -112,6 +115,8 @@ export class ArticleFormCreateEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.articleId = params.id;
+      this.setCurrentDate();
+      this.publishedAt.setValue(this.today);
     });
     if (this.articleId) {
       this.myNewsApiService.getArticle(this.articleId).subscribe(

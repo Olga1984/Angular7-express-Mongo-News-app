@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { News } from '../models/news';
@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class MyNewsApiService {
-
+  public updatedArticles: EventEmitter<News[]> = new EventEmitter();
   articles: News[];
   readonly URL_API = 'http://localhost:3000/api/news';
 

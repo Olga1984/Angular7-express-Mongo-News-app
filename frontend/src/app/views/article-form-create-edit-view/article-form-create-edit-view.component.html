@@ -39,7 +39,7 @@
 
         <div class="form-group">
             <label for="inputDate">Date
-              <input formControlName="publishedAt" class="form-control" id="inputDate" type="date" [value]="getCurrentDate() | date:'yyyy-MM-dd'" (input)="today=parseDate($event.target.value)" />
+              <input formControlName="publishedAt" class="form-control" id="inputDate" type="date" [value]="today | date:'yyyy-MM-dd'" (input)="today=parseDate($event.target.value)" />
             </label>
         </div>
 
@@ -50,7 +50,7 @@
         </div>
       <div style="display: flex; justify-content: space-between;">
         <button type="submit" [disabled]="!articleForm.valid" (click)="onSubmitArticle()" class="btn btn-success">Save</button>
-        <button (click)="reRouteToMainPage('news')" class="btn btn-warning">Cancel</button>
+        <button (click)="reRouteToMainPage()" class="btn btn-warning">Cancel</button>
       </div>
     </div>
 </form>
